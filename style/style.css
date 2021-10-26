@@ -1,0 +1,28 @@
+.slider-container{
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide{
+  height: 100%;
+  width: 100%;
+}
+
+.slide>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn{
+  padding: 1vh;
+  border:  none;
+  background-color: transparent;
+  color:rgb(80, 151, 145);
+  font-size: 22px;
+  cursor: pointer;
+} 
