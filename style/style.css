@@ -1,10 +1,20 @@
+body{
+  --main-color: rgb(7, 172, 158);
+  --color: rgb(255, 255, 240) ;
+
+  background-color: var(--color);
+}
+
 .slider-container{
   width: 50vw;
   height: 50vh;
   margin: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  border: 16px solid var(--main-color);
+  border-radius: 2%;
+  position: relative;
+  margin-top: 5%;
 }
 
 .slide{
@@ -19,10 +29,21 @@
 }
 
 .btn{
-  padding: 1vh;
   border:  none;
+  padding: 2%;
   background-color: transparent;
-  color:rgb(80, 151, 145);
-  font-size: 22px;
+  color: var(--main-color);
   cursor: pointer;
-} 
+  position: absolute;
+  transform: scale3d(2, 9, 0.8);
+  transition: all 2s;
+}
+
+.btn:hover{
+  color: var(--color);
+  transform: scale3d(4, 6, 0.3);
+}
+
+.btn:last-child{
+  right: 0; 
+}

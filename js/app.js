@@ -5,30 +5,30 @@ const slider = new Slider(imagesDB);
 const images = document.querySelector('.slide>img');
 const [prevBtn, nextBtn] = document.querySelectorAll('.btn');
 
-UpdateView();
-
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-images.addEventListener('wheel', nextSlide);
-
 function UpdateView() {
   images.setAttribute('src', slider.currentSlide);
 }
 
-function nextSlide(){
-  slider.currentIndex = slider.next();
-  UpdateView();
+UpdateView();
+
+const btnSliderHandler = (direction = 'next') => () => {
+  slider.currentIndex = slider[direction === 'next' ? 'nextIndex' : 'prevIndex'];
+  UpdateView()
 }
 
-function prevSlide(){
-  slider.currentIndex = slider.prev();
-  UpdateView();
+nextBtn.addEventListener('click', btnSliderHandler('next'));
+prevBtn.addEventListener('click', btnSliderHandler('prev'));
+
+images.addEventListener('wheel', (e) => {
+  return e.deltaY>0 ? btnSliderHandler('next')() : btnSliderHandler('prev')()
+});
+
+
+document.addEventListener('keydown', keybordArrows)
+
+
+function keybordArrows(event){
+ return event.key ==='ArrowRight' || 'ArrowUp' ?  btnSliderHandler('next')() : event.key === 'ArrowLeft' || 'ArrowDown' ? btnSliderHandler('prev')() : null;
 }
 
-document.addEventListener('keydown', event => {
-  if(event.key ==='ArrowRight'){
-    nextSlide();
-  } else if(event.key === 'ArrowLeft'){
-    prevSlide();
-  }
-})
+
